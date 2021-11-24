@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Proyecto.AdoMySQL
+namespace SoftwareFactory.AdoMySQL
 {
     public class AdoSoftware
     {

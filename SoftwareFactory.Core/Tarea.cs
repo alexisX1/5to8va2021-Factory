@@ -1,6 +1,6 @@
 using System;
 
-namespace Proyecto.Core
+namespace SoftwareFactory.Core
 {
     public class Tarea
     {

@@ -1,4 +1,4 @@
-namespace Proyecto.Core
+namespace SoftwareFactory.Core
 {
     public class Requerimiento
     {

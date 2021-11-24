@@ -1,6 +1,6 @@
-namespace Proyecto.Core
+namespace SoftwareFactory.Core
 {
-    public class Clientecs
+    public class Cliente
     {
         public int Cuit { get; set; }
         public string RazoSocial { get; set; }
