@@ -27,13 +27,13 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
             SetComandoSP("altaCliente");
 
             BP.CrearParametroSalida("Cuit")
-              .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
-              .AgregarParametro();
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
+            .AgregarParametro();
 
             BP.CrearParametro("RazonSocial")
-              .SetTipoVarchar(45)
-              .SetValor(rubro.Nombre)
-              .AgregarParametro();
+            .SetTipoVarchar(45)
+            .SetValor(rubro.Nombre)
+            .AgregarParametro();
         }
 
         public List<Cliente> ObtenerClienteW() => ColeccionDesdeTabla();
