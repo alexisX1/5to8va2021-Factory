@@ -3,7 +3,7 @@ using et12.edu.ar.AGBD.Ado;
 
 namespace SoftwareFactory.AdoMySQL
 {
-    public class AdoSoftwareFactory
+    public class AdoSoftwareFactory:IAdo
     {
         public AdoAGBD Ado { get; set; }
         public MapCliente MapCliente { get; set; }

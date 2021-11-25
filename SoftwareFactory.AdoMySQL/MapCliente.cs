@@ -26,16 +26,17 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
         {
             SetComandoSP("altaCliente");
 
-            BP.CrearParametroSalida("Cuit")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.UByte)
+            BP.CrearParametroSalida("unCuit")
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.INT)
+            SetValor(cliente.Cuit)
             .AgregarParametro();
 
-            BP.CrearParametro("RazonSocial")
-            .SetTipoVarchar(45)
-            .SetValor(rubro.Nombre)
+            BP.CrearParametro("unRazonSocial")
+            .SetTipoVarchar(50)
+            .SetValor(cliente.RazonSocial)
             .AgregarParametro();
         }
 
-        public List<Cliente> ObtenerClienteW() => ColeccionDesdeTabla();
+        public List<Cliente> ObtenerCliente() => ColeccionDesdeTabla();
     }
 }
