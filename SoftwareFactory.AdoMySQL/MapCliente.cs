@@ -3,6 +3,7 @@ using et12.edu.ar.AGBD.Ado;
 using System;
 using System.Data;
 using System.Collections.Generic;
+using cliente;
 
 namespace SoftwareFactory.AdoMySQL.Mapeadores
 {
@@ -15,8 +16,8 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
         public override Cliente ObjetoDesdeFila(DataRow fila)
             => new Cliente()
             {
-                Id = Convert.ToByte(fila["idCliente"]),
-                Nombre = fila["Cliente"].ToString()
+                Id = Convert.ToByte(fila["cuit"]),
+                Nombre = fila["RazonSocial"].ToString()
             };
 
         public void AltaCliente(Cliente cliente)
@@ -27,8 +28,8 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
             SetComandoSP("altaCliente");
 
             BP.CrearParametroSalida("unCuit")
-            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.INT)
-            SetValor(cliente.Cuit)
+            .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int32)
+            .SetValor(cliente.Cuit)
             .AgregarParametro();
 
             BP.CrearParametro("unRazonSocial")
