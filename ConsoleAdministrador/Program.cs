@@ -6,7 +6,10 @@ namespace ConsoleAdministrador
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var MenuListaCliente = new MenuListaCliente() {Nombre = "Listado de Cliente"};
+            var MenuCliente = new MenuCliente("Menu Cliente",menulistaCliente);
+
+            cliente.mostrar();    
         }
     }
 }
