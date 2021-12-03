@@ -4,36 +4,54 @@ using SoftwareFactory.Core;
 
 namespace ConsoleAdministrador.menu
 {
-    public class MenuCliente: MenuComponente
+    public class MenuCliente : MenuComponente
     {
-        public MenuAltaCliente()
+        public MenuCliente(object adocliente, Cliente cliente)
         {
-            Nombre = "Alta Cliente";
+            this.Adocliente = adocliente;
+            this.cliente = cliente;
+
         }
-    }
-    public override void mostrar()
+        public object Adocliente { get; private set; }
+        private Cliente cliente { get; set; }
+
+        public override void mostrar()
         {
             base.mostrar();
-            Cliente = new Cliente(Cliente);
-            do
-            {
-                agregarCliente();
-            }
-            while (preguntaCerrada("¿Desea agregar otro Cliente?"));
+
+            var Cuit = Convert.ToInt32(prompt("Ingrese Cuit"));
+            var RazonSocial = RazonSocial("Ingrese RazonSocial: ");
 
             try
             {
-                AdoCajero.ADO.AgregarCliente(Cliente);
-                Console.Write("Cliente agregado con exito");                
+                cliente = Adocliente.ADO.AgregarCliente(Cuit, RazonSocial);
+                if (cliente is null)
+                {
+                    Console.WriteLine("Cuit o RazonSocial incorrecta");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    instanciarMenuesPara(cliente: Cliente);
+                    PrincipalUsuario.mostrar();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Hubo un error: {e.Message} - {e.InnerException.Message}");
+                Console.WriteLine($"No se pudo iniciar sesion debido a un error: {e.Message}");
+                Console.ReadKey();
             }
         }
 
-            procesarCliente();
-
-            Console.ReadKey();
+        private void instanciarMenuesPara(Cliente cliente)
+        {
+            throw new NotImplementedException();
         }
+
+        private bool prompt(string v)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

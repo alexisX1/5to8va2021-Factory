@@ -1,11 +1,18 @@
+using System;
+using System.Collections.Generic;
+using SoftwareFactory.Core;
+
 namespace ConsoleAdministrador
 {
-    public class MenuListaCliente: MenuLista<Cliente>
+    public class MenuListaCliente: MenuListador<Cliente>
     {
         public override void imprimirElemento(Cliente cliente)
         {
-                Console.redline($"RazonSocial: {cliente.RazonSocial} - Cuit: {cliente.Cuit} ");
+            Console.WriteLine($"RazonSocial: {cliente.RazonSocial} - Cuit: {cliente.Cuit} ");
         }
-        public override list<Cliente> obtenerlista() => Program.Ado.obtenerCliente();
+        public override List<Cliente> obtenerlista()
+        {
+        return  Program.Ado.obtenerCliente();
+        }
     }
 }
