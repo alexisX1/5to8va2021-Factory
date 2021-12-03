@@ -5,6 +5,10 @@
     <ProjectReference Include="..\SoftwareFactory.AdoMySQL\SoftwareFactory.AdoMySQL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="BiblioMenu" Version="1.1.0" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>

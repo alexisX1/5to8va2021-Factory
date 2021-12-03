@@ -23,6 +23,11 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
         public void AltaCliente(Cliente cliente)
             => EjecutarComandoCon("altaCliente", ConfigurarAltaCliente, postAltaCliente, cliente);
 
+        private void postAltaCliente(Cliente obj)
+        {
+            throw new NotImplementedException();
+        }
+
         private void EjecutarComandoCon(string v, Action<Cliente> configurarAltaCliente, object postAltaCliente, Cliente cliente)
         {
             throw new NotImplementedException();
@@ -43,14 +48,14 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
                 .AgregarParametro();
         }
 
-        private object SetComandoSP(string v)
+        private new object SetComandoSP(string v)
         {
             throw new NotImplementedException();
         }
 
         public List<Cliente> ObtenerCliente() => ColeccionDesdeTabla();
 
-        private List<Cliente> ColeccionDesdeTabla()
+        private new List<Cliente> ColeccionDesdeTabla()
         {
             throw new NotImplementedException();
         }

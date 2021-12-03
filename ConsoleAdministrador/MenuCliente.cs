@@ -1,57 +1,44 @@
 using System;
 using SoftwareFactory.Core;
+using et12.edu.ar.MenuesConsola;
 
 
-namespace ConsoleAdministrador.menu
+namespace ConsoleAdministrador
 {
     public class MenuCliente : MenuComponente
-    {
-        public MenuCliente(object adocliente, Cliente cliente)
-        {
-            this.Adocliente = adocliente;
-            this.cliente = cliente;
-
-        }
-        public object Adocliente { get; private set; }
-        private Cliente cliente { get; set; }
-
+    {   
+        private MenuListaCliente MenuListaCliente { get; set; }
+        private Cliente Cliente { get; set; }
+        
         public override void mostrar()
         {
             base.mostrar();
 
             var Cuit = Convert.ToInt32(prompt("Ingrese Cuit"));
-            var RazonSocial = RazonSocial("Ingrese RazonSocial: ");
+            var RazonSocial = ReadRazonSocial("Ingrese RazonSocial: ");
+            var cliente = MenuListaCliente.seleccionarElemento();
+
+            cliente= new Cliente
+            {
+                Cuit = Cuit,
+                RazonSocial = (string)RazonSocial
+            };
 
             try
             {
-                cliente = Adocliente.ADO.AgregarCliente(Cuit, RazonSocial);
-                if (cliente is null)
-                {
-                    Console.WriteLine("Cuit o RazonSocial incorrecta");
-                    Console.ReadKey();
-                }
-                else
-                {
-                    instanciarMenuesPara(cliente: Cliente);
-                    PrincipalUsuario.mostrar();
-                }
+                Adocliente.ADO.agregarCliente(cliente);
+                Console.WriteLine("Producto dado de alta con exito");
             }
             catch (Exception e)
             {
-                Console.WriteLine($"No se pudo iniciar sesion debido a un error: {e.Message}");
-                Console.ReadKey();
+                Console.WriteLine($"No se pudo dar de alta el Cliente: {e.Message}");
             }
+            Console.ReadKey();
         }
 
-        private void instanciarMenuesPara(Cliente cliente)
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool prompt(string v)
+        private object ReadRazonSocial(string v)
         {
             throw new NotImplementedException();
         }
     }
-
 }

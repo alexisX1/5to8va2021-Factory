@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using et12.edu.ar.AGBD.Ado;
 using SoftwareFactory.AdoMySQL.Mapeadores;
 using SoftwareFactory.Core;
 using SoftwareFactory.Core.Ado;
@@ -15,7 +16,7 @@ namespace SoftwareFactory.AdoMySQL
             Ado = ado;
             MapCliente = new MapCliente(Ado);
         }
-        public new void AltaCliente(Cliente cliente) => MapCliente.AltaCliente(cliente);
+        public void AltaCliente(Cliente cliente) => MapCliente.AltaCliente(cliente);
         public List<Cliente> ObtenerClientes() => MapCliente.ObtenerClientes();
 
         public List<Cliente> ObtenerCliente()
