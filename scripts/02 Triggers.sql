@@ -15,6 +15,8 @@ SELECT calificacion,complejidad INTO RangoExperiencia,RangoComplejidad
 FROM Experiencia
 INNER JOIN Requerimiento ON Experiencia.idTecnologia=Requerimiento.idTecnologia
 WHERE cuil=new.cuil
+AND idRequerimiento=new.idRequerimiento;
+
 IF (RangoExperiencia < RangoComplejidad) THEN
 SIGNAL SQLSTATE '45000'
 	SET MESSAGE_TEXT = 'calificacion del CUIL insuficiente';

@@ -27,7 +27,7 @@ namespace ConsoleAdministrador
             try
             {
                 Adocliente.ADO.agregarCliente(cliente);
-                Console.WriteLine("Producto dado de alta con exito");
+                Console.WriteLine("Cliente dado de alta con exito");
             }
             catch (Exception e)
             {
