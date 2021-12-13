@@ -4,7 +4,7 @@ se tiene que mostrar la leyenda "Calificacion insuficiente".*/
 
 DELIMITER $$
 SELECT 'Creando Triggers' AS 'Estado';
-DROP trigger IF exists VerificarComplejidad;
+DROP trigger IF exists VerificarComplejidad $$
 CREATE trigger VerificarComplejidad BEFORE INSERT ON Tarea 
 FOR EACH ROW
 BEGIN
@@ -28,11 +28,11 @@ END $$
 le asigne por defecto experiencia en todas las tecnologías disponibles con calificación igual a CERO.*/
 
 DELIMITER $$
-DROP FUNCTION IF EXISTS befinsUsuario;
+DROP trigger IF EXISTS ExperienciaDefault $$
 CREATE trigger ExperienciaDefault AFTER INSERT ON Empleado 
 FOR EACH ROW
 BEGIN
    INSERT INTO Experiencia(Cuil,idTecnologia,calificacion)
    SELECT (new.cuil,Tecnologia.idTecnologia,0)
-   FROM Tecnologia
+   FROM Tecnologia;
 END $$

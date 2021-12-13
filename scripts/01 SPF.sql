@@ -1,9 +1,9 @@
 /*Realizar los SP para dar de alta todas las tablas, menos la tabla Experiencia.*/
 DELIMITER $$
-DROP PROCEDURE IF EXISTS altaTecnologia;
+DROP PROCEDURE IF EXISTS altaTecnologia $$
 CREATE PROCEDURE  altaTecnologia  (IN unidTecnologia TINYINT,
 IN untecnologia VARCHAR(20), 
-IN uncostoBases DECIMAL(10,2)  )
+IN uncostoBase DECIMAL(10,2) )
 
 BEGIN
 INSERT INTO Tecnologia (idTecnologia,tecnologia,costoBase)
@@ -11,12 +11,8 @@ VALUES (unidTecnologia,untecnologia,uncostoBase);
 END $$
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS altaRequerimiento;
-CREATE PROCEDURE  altaRequerimiento  ( IN unidRequerimiento INT,
-IN unidProyecto SMALLINT,
-IN unidTecnologia INT,
-IN unDescripcion VARCHAR(45),
-IN  unComplejidad TINYINT UNSIGNED )
+DROP PROCEDURE IF EXISTS altaRequerimiento $$
+CREATE PROCEDURE  altaRequerimiento  ( IN unidRequerimiento INT,IN unidProyecto SMALLINT,IN unidTecnologia INT,IN unDescripcion VARCHAR(45),IN  unComplejidad TINYINT UNSIGNED )
 
 BEGIN
 INSERT INTO Requerimiento (idRequerimiento,idProyecto,idTecnologia,Descripcion,Complejidad)
@@ -24,7 +20,7 @@ VALUES (unidRequerimiento,unidProyecto,unidTecnologia,unDescripcion,unComplejida
 END $$
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS altaProyecto;
+DROP PROCEDURE IF EXISTS altaProyecto $$
 CREATE PROCEDURE altaProyecto  (IN unidProyecto SMALLINT,
 IN unCuit INT,
 IN unDescripcion VARCHAR(200),
@@ -38,7 +34,7 @@ VALUES (unidProyecto,unCuit,unDescripcion,unPresupuesto,unInicio,unFin );
 END $$
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS altaTarea;
+DROP PROCEDURE IF EXISTS altaTarea $$
 CREATE PROCEDURE  altaTarea  (IN unidRequerimiento INT,
     IN unCuil INT,
     IN unInicio DATE,
@@ -51,7 +47,7 @@ END $$
 
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS altaCliente;
+DROP PROCEDURE IF EXISTS altaCliente $$
 CREATE PROCEDURE  altaCliente (IN unCuit INT,IN unRazonSocial VARCHAR(50))
 
 BEGIN
@@ -61,7 +57,7 @@ END $$
 
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS altaEmpleado;
+DROP PROCEDURE IF EXISTS altaEmpleado $$
 CREATE PROCEDURE altaEmpleado   (IN unCuil INT,IN unNombre VARCHAR(50),IN unApellido VARCHAR(50),
 IN unaContratacion DATE )
 
@@ -76,7 +72,7 @@ idTecnologia y una calificación. El SP tiene que crear un registro en caso de q
 actualizarlo en caso de que si exista.*/
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS asignarExperiencia;
+DROP PROCEDURE IF EXISTS asignarExperiencia $$
 CREATE PROCEDURE asignarExperiencia (IN unCuil INT,IN unidTecnologia TINYINT,IN unCalificacion TINYINT UNSIGNED)
 
 BEGIN
@@ -103,7 +99,7 @@ END $$
 un cuil y una fecha de fin. El SP deberá actualizar la fecha de fin solamente si no tenía valor previo.*/
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS finalizarTarea;
+DROP PROCEDURE IF EXISTS finalizarTarea $$
 CREATE PROCEDURE finalizarTarea (  IN unidRequerimiento INT,IN unCuil INT,IN unFechaFin DATE)
 BEGIN
 UPDATE Tarea
@@ -116,7 +112,8 @@ END $$
 /*Realizar la SF complejidadPromedio que reciba como parámetro un idProyecto y 
 devuelva un float representando el promedio de  complejidad de los requerimientos para el Proyecto pasado por parámetro.*/
 
-DROP FUNCTION IF EXISTS  ComplejidadPromedio;
+DELIMITER $$
+DROP FUNCTION IF EXISTS  ComplejidadPromedio $$
 CREATE FUNCTION ComplejidadPromedio(unidProyecto smallint) returns float
 BEGIN
 DECLARE PromedioComplejidad float;
@@ -131,8 +128,7 @@ END $$
 SUELDO MENSUAL = Antigüedad en años * 1000 + SUMATORIA de (calificación de la exp. * costo base de la tecnología).*/
 
 DELIMITER $$
-DROP FUNCTION IF EXISTS  SueldoMensual;
-SELECT 'creando Funciones' AS 'Estado' $$
+DROP FUNCTION IF EXISTS  SueldoMensual $$
 CREATE FUNCTION  SueldoMensual ( unCuil INT) returns decimal (10,2)
 
 BEGIN
@@ -149,10 +145,11 @@ END $$
 /*Realizar el SF costoProyecto que recibe como parámetro un idProyecto y devuelva el costo en DECIMAL (10,2).
 COSTO PROYECTO = SUMATORIA (complejidad del requerimiento * costo base de la tecnología del Requerimiento).*/
 
-DROP FUNCTION IF EXISTS  costoProyecto;
-CREATE FUNCTION  costoProyecto ( unidProyecto INT) retunrs decimal (10,2)
+DELIMITER $$
+DROP FUNCTION IF EXISTS  costoProyecto $$
+CREATE FUNCTION  costoProyecto ( unidProyecto INT) RETURNS decimal (10,2)
 BEGIN
-DECLARE costoProyecto decimal (10,2);
+DECLARE costoProyecto decimal(10,2);
 SELECT sum(Complejidad*costoBase) INTO costoProyecto
 FROM Requerimiento Requerimiento
 INNER JOIN Tecnologia using(idTecnologia)
