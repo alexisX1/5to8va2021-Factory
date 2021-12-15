@@ -2,8 +2,7 @@ using System;
 using SoftwareFactory.Core;
 using et12.edu.ar.MenuesConsola;
 
-
-namespace ConsoleAdministrador
+namespace ConsoleAdministrador.Menu
 {
     public class MenuCliente : MenuComponente
     {   
@@ -34,11 +33,6 @@ namespace ConsoleAdministrador
                 Console.WriteLine($"No se pudo dar de alta el Cliente: {e.Message}");
             }
             Console.ReadKey();
-        }
-
-        private object ReadRazonSocial(string v)
-        {
-            throw new NotImplementedException();
         }
     }
 }
