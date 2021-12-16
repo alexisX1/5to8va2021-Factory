@@ -8,16 +8,11 @@ namespace ConsoleAdministrador.Menu
 {
     public class MenuListaCliente: MenuListador<Cliente>
     {
-
         public override void imprimirElemento (Cliente cliente)
         {
             Console.WriteLine($"RazonSocial: {cliente.RazonSocial} - Cuit: {cliente.Cuit} ");
         }
-        public override List<Cliente> obtenerlista() =>  Program.Ado.obtenerCliente();
+        public override List<Cliente> obtenerLista() => Program.Ado.ObtenerCliente();
 
-        public override List<Cliente> obtenerLista()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

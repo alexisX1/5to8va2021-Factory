@@ -6,7 +6,11 @@ using et12.edu.ar.MenuesConsola;
 namespace ConsoleAdministrador.Menu
 {
     public class MenuCliente : MenuComponente
-    {   
+    {
+        public MenuCliente(string nombre, MenuListaCliente menuListaCliente) : base(nombre)
+        {
+        }
+
         private MenuListaCliente MenuListaCliente { get; set; }
         private Cliente Cliente { get; set; }
         

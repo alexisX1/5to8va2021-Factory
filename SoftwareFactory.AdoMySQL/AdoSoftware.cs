@@ -23,5 +23,10 @@ namespace SoftwareFactory.AdoMySQL
         {
             throw new System.NotImplementedException();
         }
+
+        public List<Cliente> obtenerCliente()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
