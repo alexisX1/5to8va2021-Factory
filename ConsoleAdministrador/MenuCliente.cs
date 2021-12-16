@@ -2,6 +2,7 @@ using System;
 using SoftwareFactory.Core;
 using et12.edu.ar.MenuesConsola;
 
+
 namespace ConsoleAdministrador.Menu
 {
     public class MenuCliente : MenuComponente
@@ -14,7 +15,7 @@ namespace ConsoleAdministrador.Menu
             base.mostrar();
 
             var Cuit = Convert.ToInt32(prompt("Ingrese Cuit"));
-            var RazonSocial = ReadRazonSocial("Ingrese RazonSocial: ");
+            var RazonSocial = RazonSocial("Ingrese RazonSocial: ");
             var cliente = MenuListaCliente.seleccionarElemento();
 
             cliente= new Cliente

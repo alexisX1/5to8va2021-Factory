@@ -1,18 +1,17 @@
-﻿using System;
-using ConsoleAdministrador.Menu;
+﻿using ConsoleAdministrador.Menu;
+using SoftwareFactory.Core.Ado;
 
 namespace ConsoleAdministrador
 {
     class Program
     {
-        public static object Ado { get; internal set; }
-
+        public static IAdo Ado { get; private set;}
         static void Main(string[] args, string nombre)
         {
-            var MenuListaCliente = new MenuListaCliente() { Nombre = "Listado de Cliente"};
-            var MenuCliente = new MenuCliente("Menu Cliente", MenuListaCliente);
+            var menuListaCliente = new MenuListaCliente() { Nombre = "Listado de Cliente"};
+            var menuCliente = new MenuCliente("Menu Cliente", menuListaCliente);
 
-            MenuCliente.mostrar();    
+            menuCliente.mostrar();    
         }
     }
 }
