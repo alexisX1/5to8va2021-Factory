@@ -19,7 +19,7 @@ namespace ConsoleAdministrador.Menu
             base.mostrar();
 
             var Cuit = Convert.ToInt32(prompt("Ingrese Cuit"));
-            var RazonSocial = RazonSocial("Ingrese RazonSocial: ");
+            var RazonSocial = ReadrazonSocial("Ingrese RazonSocial: ");
             var cliente = MenuListaCliente.seleccionarElemento();
 
             cliente= new Cliente
@@ -30,7 +30,7 @@ namespace ConsoleAdministrador.Menu
 
             try
             {
-                Adocliente.ADO.agregarCliente(cliente);
+                Program.Ado.AltaCliente(cliente);
                 Console.WriteLine("Cliente dado de alta con exito");
             }
             catch (Exception e)
@@ -38,6 +38,11 @@ namespace ConsoleAdministrador.Menu
                 Console.WriteLine($"No se pudo dar de alta el Cliente: {e.Message}");
             }
             Console.ReadKey();
+        }
+
+        private object ReadrazonSocial(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
