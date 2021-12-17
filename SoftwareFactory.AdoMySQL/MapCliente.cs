@@ -23,12 +23,7 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
         public void AltaCliente(Cliente cliente)
             => EjecutarComandoCon("altaCliente", ConfigurarAltaCliente, postAltaCliente, cliente);
 
-        private void postAltaCliente(Cliente obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void EjecutarComandoCon(string v, Action<Cliente> configurarAltaCliente, object postAltaCliente, Cliente cliente)
+        private void postAltaCliente(Cliente cliente)
         {
             throw new NotImplementedException();
         }
@@ -47,23 +42,33 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
                 .SetValor(cliente.RazonSocial)
                 .AgregarParametro();
         }
-
-        private new object SetComandoSP(string v)
+         public void PostAltaCliente(Cliente cliente)
         {
-            throw new NotImplementedException();
+            var paramCuit = GetParametro("unCuit");
+            cliente.Id = Convert.ToByte(paramCuit.Value);
+        }
+        public Cliente ClientePorId(byte id)
+        {
+            SetComandoSP("ClientePorId");
+
+            BP.CrearParametro("unCuit")
+              .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
+              .SetValor(id)
+              .AgregarParametro();
+
+            return ElementoDesdeSP();
         }
 
+ 
         public List<Cliente> ObtenerCliente() => ColeccionDesdeTabla();
 
-        private new List<Cliente> ColeccionDesdeTabla()
-        {
-            throw new NotImplementedException();
-        }
+        public override Cliente ObjetoDesdeFila(DataRow fila) =>new Cliente()
 
-        public override Cliente ObjetoDesdeFila(DataRow fila)
         {
-            throw new NotImplementedException();
-        }
+            Id = Convert.ToByte(fila["Cuit"]),
+            Nombre = fila["Razonsocial"].ToString()
+        };
+
     }
 
 }
