@@ -7,9 +7,9 @@ namespace ConsoleAdministrador.Menu
 {
     public class MenuAltaCliente : MenuComponente
     {
-        public MenuAltaCliente(string nombre, MenuListaCliente menuListaCliente) : base(nombre)
+        public MenuAltaCliente()
         {
-            this.Nombre = "Alta Cliente";
+            Nombre = "Alta Cliente";
         }
 
         private Cliente cliente { get; set; }

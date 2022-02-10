@@ -14,19 +14,9 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
         {
             Tabla = "Cliente";
         }
-
-        internal List<Cliente> ObtenerClientes()
-        {
-            throw new NotImplementedException();
-        }
-
         public void AltaCliente(Cliente cliente)
-            => EjecutarComandoCon("altaCliente", ConfigurarAltaCliente, postAltaCliente, cliente);
+            => EjecutarComandoCon("altaCliente", ConfigurarAltaCliente, cliente);
 
-        private void postAltaCliente(Cliente cliente)
-        {
-            throw new NotImplementedException();
-        }
 
         public void ConfigurarAltaCliente(Cliente cliente)
         {
@@ -42,11 +32,7 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
                 .SetValor(cliente.RazonSocial)
                 .AgregarParametro();
         }
-         public void PostAltaCliente(Cliente cliente)
-        {
-            var paramCuit = GetParametro("unCuit");
-            cliente.Id = Convert.ToByte(paramCuit.Value);
-        }
+
         public Cliente ClientePorId(byte id)
         {
             SetComandoSP("ClientePorId");
@@ -65,7 +51,6 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
         public override Cliente ObjetoDesdeFila(DataRow fila) =>new Cliente()
 
         {
-            Id = Convert.ToByte(fila["Cuit"]),
             Nombre = fila["Razonsocial"].ToString()
         };
 

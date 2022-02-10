@@ -11,11 +11,11 @@ namespace ConsoleAdministrador
         public static IAdo Ado { get; private set;}
         static void Main (string[] args)
         {
-            var adoAGBD = FactoryAdoAGBD.GetAdoMySQL("appSettings.json", "test");
+            var adoAGBD = FactoryAdoAGBD.GetAdoMySQL("appsettings.json", "root");
             Ado = new AdoSoftwareFactory(adoAGBD);
 
             var menuListaCliente = new MenuListaCliente() { Nombre = "Listado de Cliente"};
-            var menuAltaCliente = new MenuAltaCliente("Menu Cliente", menuListaCliente);
+            var menuAltaCliente = new MenuAltaCliente();
             var menuCliente = new MenuCompuesto("Menu Cliente", menuAltaCliente, menuListaCliente);
 
             menuCliente.mostrar();    

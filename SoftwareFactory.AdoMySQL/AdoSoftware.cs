@@ -17,16 +17,7 @@ namespace SoftwareFactory.AdoMySQL
             MapCliente = new MapCliente(Ado);
         }
         public void AltaCliente(Cliente cliente) => MapCliente.AltaCliente(cliente);
-        public List<Cliente> ObtenerClientes() => MapCliente.ObtenerClientes();
+        public List<Cliente> ObtenerCliente() => MapCliente.ObtenerCliente();
 
-        public List<Cliente> ObtenerCliente()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public List<Cliente> obtenerCliente()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
