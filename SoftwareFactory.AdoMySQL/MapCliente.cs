@@ -33,18 +33,6 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
                 .AgregarParametro();
         }
 
-        public Cliente ClientePorId(byte id)
-        {
-            SetComandoSP("ClientePorId");
-
-            BP.CrearParametro("unCuit")
-              .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Byte)
-              .SetValor(id)
-              .AgregarParametro();
-
-            return ElementoDesdeSP();
-        }
-
  
         public List<Cliente> ObtenerCliente() => ColeccionDesdeTabla();
 
@@ -52,7 +40,7 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
 
         {
 
-             Cuit = Convert.ToByte(fila["Cuit"]),
+             Cuit = Convert.ToInt32(fila["Cuit"]),
              RazonSocial= fila["Razonsocial"].ToString()
         };
 
