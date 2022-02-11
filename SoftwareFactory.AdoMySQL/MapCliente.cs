@@ -22,7 +22,7 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
         {
             SetComandoSP("altaCliente");
 
-            BP.CrearParametroSalida("unCuit")
+            BP.CrearParametro("unCuit")
                 .SetTipo(MySql.Data.MySqlClient.MySqlDbType.Int32)
                 .SetValor(cliente.Cuit)
                 .AgregarParametro();
@@ -51,7 +51,9 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
         public override Cliente ObjetoDesdeFila(DataRow fila) =>new Cliente()
 
         {
-            Nombre = fila["Razonsocial"].ToString()
+
+             Cuit = Convert.ToByte(fila["Cuit"]),
+             RazonSocial= fila["Razonsocial"].ToString()
         };
 
     }

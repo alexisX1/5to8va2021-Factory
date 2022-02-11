@@ -14,5 +14,6 @@ namespace ConsoleAdministrador.Menu
         }
         public override List<Cliente> obtenerLista() => Program.Ado.ObtenerCliente();
 
+
     }
 }
