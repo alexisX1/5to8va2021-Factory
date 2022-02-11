@@ -41,6 +41,7 @@ namespace SoftwareFactory.AdoMySQL.Mapeadores
         {
 
              Cuit = Convert.ToInt32(fila["Cuit"]),
+
              RazonSocial= fila["Razonsocial"].ToString()
         };
 
